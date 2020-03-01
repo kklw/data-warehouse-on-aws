@@ -4,13 +4,17 @@ from sql_queries import copy_table_queries, insert_table_queries
 
 
 def load_staging_tables(cur, conn):
+    print("Load data from S3 into staging tables")
     for query in copy_table_queries:
+        print("Running: " + query)
         cur.execute(query)
         conn.commit()
 
 
 def insert_tables(cur, conn):
+    print("Insert data from staging tables into fact and dimension tables")
     for query in insert_table_queries:
+        print("Running: " + query)
         cur.execute(query)
         conn.commit()
 
